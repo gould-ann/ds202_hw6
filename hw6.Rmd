@@ -7,3 +7,44 @@ output:
     df_print: paged
 ---
 
+imports
+```{r}
+library(readxl)
+library(tidyverse)
+```
+
+read in data
+```{r}
+dog_info <- read_excel('dog.xlsx', sheet='Best in show full sheet', skip = 3)
+# print(colnames(dog_info))
+
+# clean
+dog_info <- dog_info %>% rename('popularity' = `1- 173, 1 = most poular, US. American Kennel Club registrations 2011, pure breeds only`)
+
+dog_info <- dog_info %>% rename('dog_info' = `American Kennel Club group`)
+dog_info <- dog_info %>% rename('size_category' = `...32`)
+dog_info <- dog_info %>% rename('popularity_rank' = `pure breeds, American Kennel Club 2011`)
+dog_info <- dog_info %>% rename('intelligence_rank' = `...41`)
+dog_info <- dog_info %>% rename('intelligence_percent' = `in descending rank (higher score = better),  normalized as percentage...12`)
+dog_info <- dog_info %>% rename('score' = `intelligence + longevity + ailments + 50% (purchase price + food costs + grooming score). highest possible score: 4.5`)
+
+# higher is better for intelligence percent
+selected <- dog_info %>% select(`Dog breed`, `dog_info`, `popularity_rank`,`intelligence_rank`,`intelligence_percent`,`size_category`, `score`)
+
+selected
+
+
+```
+
+Presenting the data
+Y axis: popularity
+X axis: data score
+color: dog type
+size of dog: size of dog
+shape of dot?: if dog is smart or not
+```{r}
+# drop columns where there is no value on if a dog is smart or not 
+
+# make a new column based off of value of if dog is smart or not
+```
+
