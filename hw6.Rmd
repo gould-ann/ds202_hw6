@@ -1,0 +1,9 @@
+---
+title: "Homework 6"
+author: Ann Gould
+github: gould-ann
+output:
+  html_document:
+    df_print: paged
+---
+
