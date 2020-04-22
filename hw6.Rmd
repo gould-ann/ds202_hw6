@@ -11,6 +11,7 @@ imports
 ```{r}
 library(readxl)
 library(tidyverse)
+library(ggplot2)
 ```
 
 read in data
@@ -44,7 +45,32 @@ size of dog: size of dog
 shape of dot?: if dog is smart or not
 ```{r}
 # drop columns where there is no value on if a dog is smart or not 
-
+selected <- selected[!is.na(selected$intelligence_percent), ]
 # make a new column based off of value of if dog is smart or not
+vals <- c()
+for (val in selected$intelligence_percent){
+  if (val > 0.5){
+    vals <- c(vals, TRUE) 
+  }
+  else{
+    vals <- c(vals, FALSE)
+  }
+}
+selected$smart = vals
+
+# make category a factor
+
+as.factor(selected$dog_info)
+as.factor(selected$size_category)
+selected
+
+
+```
+
+```{r}
+# options(repr.plot.width=15, repr.plot.height=8)
+
+ggplot(selected,aes(x=score,y=-popularity_rank, color=dog_info, shape=smart, size=size_category)) + geom_point(alpha=.7) + geom_text(aes(label=`Dog breed`))
+# ggsave("/tmp/plt.png", width = 34, height = 9, dpi = 120)
 ```
 
