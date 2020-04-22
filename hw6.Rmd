@@ -67,10 +67,11 @@ selected
 
 ```
 
+
+I tried a lot to try to not have much overlap with this graph but had a lot of difficulty making the ggplot larger. 
 ```{r}
 # options(repr.plot.width=15, repr.plot.height=8)
 
-ggplot(selected,aes(x=score,y=-popularity_rank, color=dog_info, shape=smart, size=size_category)) + geom_point(alpha=.7) + geom_text(aes(label=`Dog breed`))
-# ggsave("/tmp/plt.png", width = 34, height = 9, dpi = 120)
+ggplot(selected,aes(x=score,y=-popularity_rank, color=dog_info, shape=smart, size=size_category)) + geom_point(alpha=.4) + geom_text(aes(label=`Dog breed`), alpha=0.6, size = 2) + ggtitle("Best in Show: The Ultimate Doggy Title") + xlab("Score") + ylab("Popularity")
 ```
 
